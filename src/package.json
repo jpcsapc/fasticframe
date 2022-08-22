@@ -28,7 +28,7 @@
     "css": "postcss _site/assets/css/styles.css -o _site/dist/css/styles.css",
     "copy-dist": "copyfiles -u 2 _site/dist/js/* dist && copyfiles -u 2 _site/dist/css/* dist",
     "build": "bundle exec jekyll build && npm run js && npm run css && npm run min && npm run copy-dist",
-    "build-docs": "npm run build && rsync -av * ../../docs/ --exclude index.html --exclude _config.yml"
+    "build-docs": "npm run build && rsync -av * ../docs/ --exclude index.html --exclude _config.yml"
   },
   "keywords": [],
   "author": "",
