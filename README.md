@@ -8,15 +8,17 @@ A simple tool to create framed profile pictures for social media in support of a
 
 ## Installation
 
-Before using FasticFrame, you must ensure that Node.js and Jekyll are installed on your system. To install, do the following:
+Before using FasticFrame, you must ensure that Node.js and Jekyll are installed on your system. Some of the commands below assume that you're using an `Arch`-based distro. To install, do the following:
 
 1. Install [Node.js](https://nodejs.org), npm, and its dependencies.
 ```
+pacman -Syu nodejs npm
 npm install
 ```
 
 2. Install Ruby and [Jekyll](https://jekyllrb.com/docs/installation).
 ```
+pacman -Syu ruby
 gem install jekyll bundler
 bundle config set --local path 'vendor/bundle'
 bundle install
