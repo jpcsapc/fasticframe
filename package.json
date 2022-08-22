@@ -1,6 +1,6 @@
 {
-  "name": "avatar-framer",
-  "version": "1.0.1",
+  "name": "fasticframe",
+  "version": "1.0.0a1",
   "description": "",
   "main": "postcss.config.js",
   "dependencies": {
@@ -8,8 +8,9 @@
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
     "autoprefixer": "^10.3.1",
+    "browserify": "^17.0.0",
     "dropzone": "5.7.2",
-    "fabric": "^4.2.0",
+    "fabric": "^5.2.1",
     "tailwindcss": "^2.2.7",
     "terser": "^5.3.4"
   },
