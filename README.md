@@ -1,27 +1,25 @@
-# avatar-framer
+# FasticFrame
 
-A simple tool to create framed profile pictures for social media in support of a cause. Dynamically generate a static site based off of configuration options and the number of frame images provided. Just provide the images, a logo and your copy. Runs entirely in your browser (no images are uploaded to a server) to minimize privacy concerns. Based on http://avatar.joebiden.com.
+A simple tool to create framed profile pictures for social media in support of a cause. This project is a fork of [avatar-framer](https://github.com/anquinn/avatar-framer/).
 
-**Demo:** http://andrewquinn.ca/avatar-framer/
-
-**Goal:** Create an easily configurable static site, that can be quickly generated in a few minutes to support whatever cause you're working on.
-
-## Contributing
-Open to additions and pull requests.
+* Dynamically generate a static site based off of configuration options and the number of frame images provided.
+* Just provide the images, a logo and your copy.
+* Runs entirely in the browser (no images are uploaded to a server) to minimize privacy concerns.
 
 ## Installation
 
-### Install Node.js and Jekyll
+Before using FasticFrame, you must ensure that Node.js and Jekyll are installed on your system. To install, do the following:
 
-Before using avatar-framer, you must ensure that Node.js and Jekyll are installed on your system. To install, do the following:
-
-1. Install [Node.js](https://nodejs.org) and npm.
-
-2. Install [Jekyll](https://jekyllrb.com/docs/installation)
-
-3. Install dependancies:
+1. Install [Node.js](https://nodejs.org), npm, and its dependencies.
 ```
 npm install
+```
+
+2. Install Ruby and [Jekyll](https://jekyllrb.com/docs/installation).
+```
+gem install jekyll bundler
+bundle config set --local path 'vendor/bundle'
+bundle install
 ```
 
 ### Usage - Generate your site
@@ -48,7 +46,6 @@ npm run build
 #### Previews
 * Previews should be at least `400px x 400px` and square.
 * Previews should be named `preview-1`, `preview-2` etc. and match the frame numbering.
-
 
 #### Run locally
 ```
@@ -120,7 +117,7 @@ The following configuration options are available in `_config.yml`:
 
 
 ### Colors
-avatar-framer is setup with primary and secondary colors in `tailwind.config.js` to generate the site. You can edit the primary and secondary colors directly, or add your own. All [tailwind default colors](https://tailwindcss.com/docs/background-color) are also available.
+FasticFrame is setup with primary and secondary colors in `tailwind.config.js` to generate the site. You can edit the primary and secondary colors directly, or add your own. All [tailwind default colors](https://tailwindcss.com/docs/background-color) are also available.
 ```js
 theme: {
   extend: {
