@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function(){
       scaleControl.value = image.scaleX;
       angleControl.value = image.angle;
     }
+
     canvas.on({
-      'object:moving': updateControls,
       'object:scaling': updateControls,
       'object:resizing': updateControls,
       'object:rotating': updateControls,
