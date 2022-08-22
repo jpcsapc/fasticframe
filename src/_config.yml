@@ -79,8 +79,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules/
+  - vendor/
   - "*.config.js"
   - "*.config.json"
   - "package*.json"
-  - README.md
-  - docs
