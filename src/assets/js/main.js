@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     var scaleControl = $('scale-control');
     scaleControl.oninput = function() {
-      image.scale(parseFloat(this.value)/200).setCoords();
+      image.scale(parseFloat(this.value)).setCoords();
       canvas.requestRenderAll();
     };
 
@@ -101,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
       image.scaleToHeight(canvas.getHeight());
       image.scaleToWidth(canvas.getWidth());
+      let scaleControl = document.getElementById('scale-control');
+      scaleControl.value = image.scaleX;
       canvas.centerObject(image);
       canvas.add(image);
       canvas.renderAll();
