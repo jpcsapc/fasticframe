@@ -32,7 +32,7 @@ ol.instructions > li::before {
   @apply font-bold;
 }
 
-#download:disabled {
+button:disabled {
   @apply bg-gray-200;
   cursor: default;
 }
