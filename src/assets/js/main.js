@@ -134,18 +134,6 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("upload-text").innerHTML = "Drop files here or click to upload.";
   });
 
-  // Change the canvas frames
-  // one per frame
-  // add your frames here
-
-  {% for image in site.static_files %}
-      {% if image.path contains 'frames/' %}
-          document.getElementById("{{ image.basename }}").addEventListener("click", function (){
-            changeFrame(canvas, '{{ image.path | relative_url }}');
-          });
-      {% endif %}
-  {% endfor %}
-
   // handle download
   // create a link and simulate a click to download the file
   var download = document.getElementById("download");
@@ -158,6 +146,17 @@ document.addEventListener("DOMContentLoaded", function(){
             (r.href = e), (r.download = "profile-pic.jpeg"), document.body.appendChild(r), r.click(), document.body.removeChild(r);
         }
     }
+  }, false);
+
+  var copyCaptionBtn = document.getElementById('copyCaptionBtn');
+  copyCaptionBtn.addEventListener('click', function (aEvent) {
+    let range = document.createRange();
+    let captionBlock = document.getElementById("caption");
+    range.selectNode(captionBlock);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
   }, false);
 });
 
