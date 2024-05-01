@@ -5,6 +5,7 @@
 
 const Dropzone = require ('dropzone');
 const fabric = require('fabric').fabric;
+const heic2any = require('heic2any');
 
 Dropzone.autoDiscover = false;
 
@@ -77,6 +78,20 @@ document.addEventListener("DOMContentLoaded", function(){
 
   })();
 
+  const updateControlState = function(state) {
+    document.getElementById("download").disabled = state;
+    document.getElementById("angle-control").disabled = state;
+    document.getElementById("scale-control").disabled = state;
+  }
+
+  const resetState = function() {
+    if (image) {
+      canvas.remove(image);
+    }
+    updateControlState(true);
+  }
+  resetState();
+
   var reader = new FileReader();
   reader.onload = function(event) {
 
@@ -111,6 +126,9 @@ document.addEventListener("DOMContentLoaded", function(){
       canvas.add(image);
       canvas.renderAll();
       canvas.setActiveObject(image);
+
+      document.getElementById("upload-text").innerHTML = "";
+      updateControlState(false);
     });
   };
 
@@ -118,12 +136,27 @@ document.addEventListener("DOMContentLoaded", function(){
   // call the reader to add it to the canvas
   // enable the download button and controls
   // remove the upload text
-  imgUpload.on("addedfile", function(file) {
-    reader.readAsDataURL(file);
-    document.getElementById("download").disabled = false;
-    document.getElementById("angle-control").disabled = false;
-    document.getElementById("scale-control").disabled = false;
-    document.getElementById("upload-text").innerHTML = "";
+  imgUpload.on("addedfile", async function(file) {
+    resetState();
+    document.getElementById("upload-text").innerHTML = "Please wait while we're processing your picture.";
+    let processedFile = file;
+    let wasProcessed = true;
+    // Some devices make use of the HEIC format and the browser
+    // doesn't support that natively.
+    if (file.name.toLowerCase().includes("heic")) {
+      await heic2any({ blob: file })
+        .then((conversionResult) => {
+          processedFile = conversionResult;
+        })
+        .catch((e) => {
+          document.getElementById("upload-text").innerHTML = "Please use a different picture.";
+          wasProcessed = false;
+        });
+    }
+    if (!wasProcessed) {
+      return;
+    }
+    reader.readAsDataURL(processedFile);
   });
 
   // when the image is removed
@@ -131,10 +164,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // disable the download button and controls
   // re-add the upload text
   imgUpload.on("removedfile", function() {
-    canvas.remove(image);
-    document.getElementById("download").disabled = true;
-    document.getElementById("angle-control").disabled = true;
-    document.getElementById("scale-control").disabled = true;
+    resetState();
     document.getElementById("upload-text").innerHTML = "Drop files here or click to upload.";
   });
 
