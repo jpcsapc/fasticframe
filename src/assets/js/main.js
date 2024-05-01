@@ -62,13 +62,17 @@ document.addEventListener("DOMContentLoaded", function(){
       'object:rotating': updateControls,
     });
 
-    canvas.setOverlayImage("{{ 'img/frames/frame-1.png' | relative_url }}" , function() {
-        canvas.overlayImage.scaleToWidth(canvas.getWidth())
-        canvas.renderAll()
-      }, {
+    fabric.Image.fromURL('img/frame.png', function(aImage) {
+      aImage.set({
         originX: 'left',
         originY: 'top',
-        crossOrigin: 'anonymous'
+        crossOrigin: 'anonymous',
+        srcFromAttribute: true,
+      });
+      canvas.setOverlayImage(aImage, function() {
+        canvas.overlayImage.scaleToWidth(canvas.getWidth());
+        canvas.renderAll();
+      });
     });
 
   })();
